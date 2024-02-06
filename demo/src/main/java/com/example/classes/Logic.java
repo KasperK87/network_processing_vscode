@@ -5,6 +5,9 @@ public class Logic {
    public int myScore = 0; 
    public int enemyScore = 0;
 
+   public int mitValg;
+   public int fjendeValg;
+
    public static final int saks = 0;
    public static final int papir = 1;
    public static final int sten = 2;
@@ -33,5 +36,13 @@ public class Logic {
     }
     
     return error;
+   }
+
+   public void test(){
+    if (mitValg < 3 && fjendeValg < 3){
+            isWinner(mitValg, fjendeValg);
+            mitValg = error;
+            fjendeValg = error;
+        }
    }
 }

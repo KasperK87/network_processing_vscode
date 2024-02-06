@@ -31,9 +31,13 @@ public class Main extends PApplet{
         Client thisClient = server.available();
         if (thisClient != null) {
             int what = thisClient.read();
-            gameLogic.isWinner(Logic.sten, what);
+            gameLogic.fjendeValg = what;
+            //gameLogic.isWinner(Logic.sten, what);
             println(what);
         }
+
+        gameLogic.test();
+        
         background(0);
         textSize(32);
         textAlign(LEFT);
