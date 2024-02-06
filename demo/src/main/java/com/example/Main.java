@@ -14,6 +14,7 @@ public class Main extends PApplet{
 
     Server server;
     Logic gameLogic;
+    GUI gameGUI;
 
     public void settings() {
         size(640, 360);
@@ -23,6 +24,7 @@ public class Main extends PApplet{
         
         server = new Server(this, 12345);
         gameLogic = new Logic();
+        gameGUI = new GUI(this);
         
         background(102);
     }
@@ -44,5 +46,10 @@ public class Main extends PApplet{
         text(gameLogic.myScore, 10, 50);
         textAlign(RIGHT);
         text(gameLogic.enemyScore, width-10, 50);
+
+        fill(255);
+        rect(0,240,640,120);
+
+        gameGUI.render();
     }
 }
