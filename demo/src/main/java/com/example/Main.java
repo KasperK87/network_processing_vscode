@@ -1,5 +1,7 @@
 package com.example;
 
+import  com.example.classes.*;
+
 import processing.core.*;
 import processing.net.*;
 
@@ -11,13 +13,17 @@ public class Main extends PApplet{
     }
 
     Server server;
+    Logic gameLogic;
 
     public void settings() {
         size(640, 360);
     }
 
     public void setup() {
+        
         server = new Server(this, 12345);
+        gameLogic = new Logic();
+        
         background(102);
     }
 
@@ -25,7 +31,14 @@ public class Main extends PApplet{
         Client thisClient = server.available();
         if (thisClient != null) {
             int what = thisClient.read();
+            gameLogic.isWinner(Logic.sten, what);
             println(what);
         }
+        background(0);
+        textSize(32);
+        textAlign(LEFT);
+        text(gameLogic.myScore, 10, 50);
+        textAlign(RIGHT);
+        text(gameLogic.enemyScore, width-10, 50);
     }
 }

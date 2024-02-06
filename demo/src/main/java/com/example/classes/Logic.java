@@ -2,8 +2,8 @@ package com.example.classes;
 
 public class Logic {
    int turn = 0;
-   int myScore = 0; 
-   int enemyScore = 0;
+   public int myScore = 0; 
+   public int enemyScore = 0;
 
    public static final int saks = 0;
    public static final int papir = 1;
