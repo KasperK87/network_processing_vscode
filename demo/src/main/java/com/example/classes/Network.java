@@ -6,25 +6,43 @@ import processing.net.*;
 public class Network {
     PApplet p;
 
+    boolean isServer = false;
    Server server;
    Client client;
 
    public Network(PApplet p){
         this.p = p;
+        
+        
+            client = new Client(p, "127.0.0.1", 8888);
 
-        client = new Client(p, "127.0.0.1", 8888);
-
-        //server = new Server(p, 8888);
+            if (client.active() == false){
+                server = new Server(p, 8888);
+                isServer = true;
+            }
+        
    }
 
    public void  send(String s){
-
+    if (isServer){
+        server.write(s);
+    } else {
+        client.write(s);
+    }
    } 
    
-   public String rsv(){
-    String s = "";
+   public int rsv(){
+    if (isServer){
+        client = server.available();
+    }
     
-    return s;
+    if (client !=null) {
+        if (client.available() > 0) { 
+            return client.read();     
+        }
+    }
+
+    return 9001;
    }
 
 }

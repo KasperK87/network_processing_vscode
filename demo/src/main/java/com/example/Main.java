@@ -12,7 +12,8 @@ public class Main extends PApplet{
 		PApplet.runSketch(processingArgs, mySketch);
     }
 
-    Server server;
+    //Server server;
+    Network network;
     Logic gameLogic;
     GUI gameGUI;
 
@@ -22,7 +23,8 @@ public class Main extends PApplet{
 
     public void setup() {
         
-        server = new Server(this, 12345);
+        //server = new Server(this, 12345);
+        network = new Network(this);
         gameLogic = new Logic();
         gameGUI = new GUI(this);
         
@@ -30,11 +32,22 @@ public class Main extends PApplet{
     }
 
     public void draw() {
+        /* 
         Client thisClient = server.available();
         if (thisClient != null) {
             int what = thisClient.read();
             gameLogic.fjendeValg = what;
             //gameLogic.isWinner(Logic.sten, what);
+            println(what);
+        }
+        */
+
+        int input = network.rsv();
+
+        if (input != 9001){
+            int what = input;
+            gameLogic.fjendeValg = what;
+            gameLogic.isWinner(Logic.sten, what);
             println(what);
         }
 
@@ -51,5 +64,7 @@ public class Main extends PApplet{
         rect(0,240,640,120);
 
         gameGUI.render();
+
+        println("running");
     }
 }
