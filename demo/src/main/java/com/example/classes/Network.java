@@ -23,7 +23,7 @@ public class Network {
         
    }
 
-   public void  send(String s){
+   public void  send(int s){
     if (isServer){
         server.write(s);
     } else {

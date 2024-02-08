@@ -65,6 +65,13 @@ public class Main extends PApplet{
 
         gameGUI.render();
 
-        println("running");
+        //println("running");
+    }
+
+    public void mousePressed(){
+        network.send(Logic.papir);
+
+        println("test");
+
     }
 }
